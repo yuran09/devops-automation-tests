@@ -13,7 +13,7 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter build apk
+      #- run: flutter build apk #lets not use this too many times, its expensive for github actions
       - run: flutter analyze
       - run: flutter test
       - run: flutter test --coverage

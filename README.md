@@ -1,6 +1,6 @@
 # multipurposeapp_flutter
 
-A flutter app for any widget implementation
+A flutter app for any widget implementation and CI/CD tests
 
 ## Getting Started
 

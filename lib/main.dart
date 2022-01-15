@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Multipurpose App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -25,10 +25,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.lightBlue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Multipurpose App'),
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -43,6 +44,14 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
+
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int counter = 0;
   final List urls = [
     'https://picsum.photos/250?image=9',
     'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
@@ -53,21 +62,15 @@ class MyHomePage extends StatefulWidget {
   String currentUrl =
       "https://cdn.pixabay.com/photo/2022/01/08/07/27/lily-6923417_1280.jpg";
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int counter = 0;
-
   void _changePictures() {
     setState(() {
-      if(counter == widget.urls.length){
+      if(counter == urls.length){
         counter = 0;
       }
-      if (counter < widget.urls.length) {
-        widget.currentUrl = widget.urls.elementAt(counter++);
+      if (counter < urls.length) {
+        currentUrl = urls.elementAt(counter++);
       }
+      print('hello');
 
     });
   }
@@ -81,17 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBluesss,
+        backgroundColor: Colors.lightBlue,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
         child: CachedNetworkImage(
-          imageUrl: widget.currentUrl,
+          imageUrl: currentUrl,
           progressIndicatorBuilder: (context, url, downloadProgress) =>
               CircularProgressIndicator(value: downloadProgress.progress),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
       floatingActionButton: FloatingActionButton(
